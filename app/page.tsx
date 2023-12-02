@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="pt-20 ">
+    <div className="pt-28 ">
       <div className="bg-white w-[60em] flex flex-col h-[400px]  border-8 border-gray-500 mx-auto ">
         <h3 className="font-fahkwang text-center text-5xl mt-4 tracking-[0.2em] uppercase font-bold">
           agen bus malam
@@ -12,7 +12,7 @@ export default function Home() {
             PO
           </span>{" "}
           <h1 className=" font-sriracha text-red-600 shadow-black uppercase text-8xl">
-            BISNIS NASIHAT
+            JALAN KEHIDUPAN
           </h1>
         </div>
         <h3 className="text-center font-kanit text-4xl ml-8">
@@ -21,8 +21,8 @@ export default function Home() {
         <div className="bg-lime-500 p-4 mt-2"></div>
         <div className="bg-lime-900 h-fit flex flex-grow justify-center">
           <p className="text-white text-center mx-4 text-2xl uppercase font-sriracha italic my-auto">
-            rempoa - ciputat - bintaro - kp utan - jakarta - bandung -
-            gunungkidul - berlin
+            CIPUTAT - BINTARO - JAKARTA - NUSANTARA - JAKARTA - JOGJAKARTA -
+            BANDUNG - AMSTERDAM - BERLIN
           </p>
         </div>
       </div>

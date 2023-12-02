@@ -1,7 +1,7 @@
 "use client";
 import Banner from "@/components/Banner";
-import { useRef, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import { toPng } from "html-to-image";
 interface BannerProperties {
   name: string;
   trayek: string[];
@@ -10,31 +10,38 @@ interface BannerProperties {
   textColor: string;
   mainBg: string;
   mainText: string;
+  trayekColor: string;
 }
 
 export default function MakerPage() {
   const [newTrayek, setNewTrayek] = useState("");
-  const [trayekList, setTrayekList] = useState([]);
-  const [banner, setBanner] = useState({
-    name: "Maju Mapan",
+  const [trayekList, setTrayekList] = useState<string[]>([]);
+  const [banner, setBanner] = useState<BannerProperties>({
+    name: "JALAN KEHIDUPAN",
     trayek: trayekList,
     colorA: "#b9d2fa",
     colorB: "#0c326e",
-    textColor: "#ff0000",
+    textColor: "#bF1500",
     mainBg: "#FFFFFF",
+    trayekColor: "#FFFFFF",
     mainText: "#000",
   });
-  const trayekInput = useRef(null);
+  const trayekInput = useRef<HTMLInputElement>(null);
 
-  const handleAdd = (e: React.ChangeEvent<any>) => {
-    e.preventDefault();
-    const tra = newTrayek.trim();
+  useEffect(() => {
+    setBanner({ ...banner, trayek: trayekList });
+  }, [trayekList]);
 
-    if (tra && !trayekList.includes(tra)) {
+  const handleAdd = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
       setTrayekList((prevTrayek) => [...prevTrayek, newTrayek]);
+
+      setNewTrayek("");
+      if (trayekInput.current != null) {
+        trayekInput.current.focus();
+      }
     }
-    setNewTrayek("");
-    trayekInput.current.focus();
   };
   return (
     <div>
@@ -45,7 +52,6 @@ export default function MakerPage() {
       >
         <div className="flex gap-4 justify-center">
           <div className="gap-4 flex items-center">
-            <label htmlFor="name">Name: </label>
             <input
               type="text"
               placeholder="Name"
@@ -121,24 +127,29 @@ export default function MakerPage() {
             ></input>
           </div>
         </div>
-        <div className="gap-4 flex items-center mt-4">
+        <div className="gap-4 flex  justify-center items-center mt-4">
           <input
             type="text"
             name="trayek"
             placeholder="Trayek"
-            onSubmit={(e) => {
-              setBanner({
-                ...banner,
-                trayek: banner.trayek.concat(e.target.value),
-              });
-            }}
-            className=" px-4 py-2 rounded-md outline-none bg-zinc-900 border-2 border-white"
+            onChange={(e) => setNewTrayek(e.target.value)}
+            value={newTrayek}
+            ref={trayekInput}
+            onKeyDown={handleAdd}
+            className=" px-4 py-2  rounded-md outline-none bg-zinc-900 border-2 border-white"
           ></input>
-          {banner.trayek.length !== 0 &&
-            banner.trayek.map((tray) => <li key={tray}>{tray}</li>)}
-        </div>
-        <div className="text-white font-kanit cursor-pointer px-4 py-2 bg-zinc-900 mt-4  w-1/6 mx-auto text-center rounded-xl border-2 border-lime-300 transition ease-in-out  duration-300 shadow-sm hover:shadow-lime-400 hover:shadow-md">
-          Download
+          <div className="gap-4 flex items-center">
+            <input
+              type="color"
+              placeholder="Trayek Color"
+              name="trayekcolor"
+              onChange={(e) => {
+                setBanner({ ...banner, trayekColor: e.target.value });
+              }}
+              value={banner.trayekColor}
+              className="rounded-md outline-none bg-zinc-900 border-2 border-white"
+            ></input>
+          </div>
         </div>
       </form>
     </div>

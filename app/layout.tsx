@@ -27,11 +27,6 @@ const fahkwang = Fahkwang({
   variable: "--font-fahkwang",
 });
 
-export const metadata: Metadata = {
-  title: "Bus Kehidupan",
-  description: "PO Bus kehidupan",
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -47,3 +42,10 @@ export default function RootLayout({
     </html>
   );
 }
+
+const metadata: Metadata = {
+  title: "Bus Kehidupan",
+  description: "reklame agen bus",
+};
+
+export { metadata };
