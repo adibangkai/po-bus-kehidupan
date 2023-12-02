@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <div className="bg-slate-800 h-screen pt-20 ">
+    <div className="pt-20 ">
       <div className="bg-white w-[60em] flex flex-col h-[400px]  border-8 border-gray-500 mx-auto ">
         <h3 className="font-fahkwang text-center text-5xl mt-4 tracking-[0.2em] uppercase font-bold">
           agen bus malam
@@ -24,9 +26,11 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="text-white font-kanit cursor-pointer px-4 py-2 bg-slate-900 mt-4  w-1/6 mx-auto text-center rounded-xl border-2 border-lime-300 transition ease-in-out  duration-300 shadow-sm hover:shadow-lime-400 hover:shadow-md">
-        make your own
-      </div>
+      <Link href={"/maker"}>
+        <div className="text-white font-kanit cursor-pointer px-4 py-2 bg-zinc-900 mt-4  w-1/6 mx-auto text-center rounded-xl border-2 border-lime-300 transition ease-in-out  duration-300 shadow-sm hover:shadow-lime-400 hover:shadow-md">
+          make your own
+        </div>
+      </Link>
     </div>
   );
 }
